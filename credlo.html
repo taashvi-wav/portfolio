@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Credlo Case Study</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+*,*::before,*::after{cursor:none!important;}
+
+html{scrollbar-width:none;}
+html::-webkit-scrollbar{display:none;}
+
+body{
+  background:#1F1F1F;
+  font-family:'Space Grotesk',sans-serif;
+}
+
+/* ===== CURSOR ===== */
+.cursor{
+  position:fixed;
+  width:16px;height:16px;
+  border-radius:50%;
+  background:#fff;
+  mix-blend-mode:difference;
+  pointer-events:none;
+  z-index:1000;
+  transform:translate(-50%,-50%);
+}
+
+/* ===== NAV ===== */
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:clamp(1.2rem,4vw,2rem) clamp(1.2rem,6vw,3rem);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:'Montserrat',sans-serif;
+  z-index:100;
+
+  background:rgba(31,31,31,0.55);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+
+  transition:transform .6s cubic-bezier(.16,1,.3,1);
+}
+
+.nav.hidden{ transform:translateY(-100%); }
+
+.nav a{
+  color:#FBFBFB;
+  text-decoration:none;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  font-size:clamp(.65rem,2.5vw,.8rem);
+}
+
+/* ===== WRAPPER ===== */
+.project-wrapper{
+  padding-top:clamp(120px,18vh,140px);
+  padding-bottom:clamp(100px,20vh,160px);
+  padding-left:clamp(16px,4vw,40px);
+  padding-right:clamp(16px,4vw,40px);
+  display:flex;
+  justify-content:center;
+}
+
+.project-stack{
+  width:92%;
+  max-width:1500px;
+  display:flex;
+  flex-direction:column;
+  gap:clamp(24px,4vw,40px);
+}
+
+/* ===== SLIDES ===== */
+.slide{
+  opacity:0;
+  transform:translate3d(0,80px,0);
+  transition:
+    opacity 1s cubic-bezier(.16,1,.3,1),
+    transform 1s cubic-bezier(.16,1,.3,1);
+}
+.slide.visible{
+  opacity:1;
+  transform:translate3d(0,0,0);
+}
+.slide img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  text-align:center;
+  padding:clamp(40px,8vh,60px) 0 clamp(60px,10vh,80px);
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(.65rem,2.2vw,.8rem);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.25);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:768px){
+  html,body{overflow:auto;}
+
+  .slide{
+    transform:none;
+    opacity:1;
+    transition:none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="cursor"></div>
+
+<nav class="nav">
+  <a href="work.html">Back</a>
+  <a href="index.html">Home</a>
+</nav>
+
+<div class="project-wrapper">
+  <div class="project-stack">
+
+    <div class="slide"><img src="credlo-slide1.png"></div>
+    <div class="slide"><img src="credlo-slide2.png"></div>
+    <div class="slide"><img src="credlo-slide3.png"></div>
+    <div class="slide"><img src="credlo-slide4.png"></div>
+    <div class="slide"><img src="credlo-slide5.png"></div>
+    <div class="slide"><img src="credlo-slide6.png"></div>
+    <div class="slide"><img src="credlo-slide7.png"></div>
+    <div class="slide"><img src="credlo-slide8.png"></div>
+    <div class="slide"><img src="credlo-slide9.png"></div>
+    <div class="slide"><img src="credlo-slide10.png"></div>
+    <div class="slide"><img src="credlo-slide11.png"></div>
+
+  </div>
+</div>
+
+<div class="footer">
+  coded with &lt;3 by me
+</div>
+
+<script>
+
+/* ===== CURSOR ===== */
+const cursor=document.querySelector('.cursor');
+let cx=innerWidth/2,cy=innerHeight/2,tx=cx,ty=cy;
+
+document.addEventListener('mousemove',e=>{
+  tx=e.clientX;
+  ty=e.clientY;
+});
+
+function animateCursor(){
+  cx+=(tx-cx)*0.15;
+  cy+=(ty-cy)*0.15;
+  cursor.style.left=cx+'px';
+  cursor.style.top=cy+'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+/* ===== LENIS ===== */
+const lenis = new Lenis({
+  duration: 1.2,
+  smoothWheel: true,
+  smoothTouch: false,
+  lerp: 0.1
+});
+
+function raf(time){
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+/* ===== NAV SHOW / HIDE ===== */
+const nav=document.querySelector('.nav');
+let lastScroll=0;
+
+lenis.on('scroll', ({ scroll }) => {
+
+  if(scroll <= 10){
+    nav.classList.remove('hidden');
+    return;
+  }
+
+  if(scroll > lastScroll + 5){
+    nav.classList.add('hidden');
+  } 
+  else if(scroll < lastScroll - 5){
+    nav.classList.remove('hidden');
+  }
+
+  lastScroll = scroll;
+});
+
+/* ===== REVEAL ON SCROLL ===== */
+const slides=document.querySelectorAll('.slide');
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+},{ threshold:0.2 });
+
+slides.forEach(slide=>observer.observe(slide));
+
+</script>
+
+</body>
+</html>
