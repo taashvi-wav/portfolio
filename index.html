@@ -17,7 +17,7 @@
         .cursor.active { transform:translate(-50%,-50%) scale(1.8); }
         #loader { position:fixed; inset:0; z-index:500; background:#1b1b1b; }
         #loader video { width:100%; height:100%; object-fit:cover; }
-        #loader-text { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-size:clamp(1.2rem,4vw,2rem); letter-spacing:.28em; color:white; mix-blend-mode:difference; padding:0 1rem; text-align:center; }
+        #loader-text { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; font-family:'Space Grotesk',sans-serif; font-size:clamp(1.2rem,4vw,2rem); letter-spacing:.28em; color:white; mix-blend-mode:difference; padding:0 2rem; text-align:center; line-height:1.8; }
         #loader-text span { position:relative; display:inline-block; }
         #loader-text span.space { width:.6em; }
         #loader-text span::before, #loader-text span::after { content:attr(data-char); position:absolute; top:0; left:0; opacity:0; }
@@ -108,74 +108,68 @@
         .shredded-container.go { animation:fadeUp 1.4s cubic-bezier(.16,1,.3,1) 0s both; }
         .slice { width:58px; height:100%; background-size:cover; background-position:center; transition:width .6s cubic-bezier(.23,1,.32,1), filter .4s; filter:grayscale(1) brightness(.95); border-left:1px solid rgba(0,0,0,.05); will-change:transform; overflow:hidden; }
         .slice:nth-child(1){
-    height:40%;
-    margin-top:10%;
-    background-color:#ccc;
-    background-image: url('lp8.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.slice:nth-child(2){
-    height:62%;
-    margin-top:-5%;
-    background-color:#bbb;
-    background-image: url('lp2.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.slice:nth-child(3){
-    height:86%;
-    margin-top:4%;
-    background-color:#aaa;
-    background-image: url('lp4.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.slice:nth-child(4){
-    height:100%;
-    margin-top:0%;
-    background-color:#999;
-    background-image: url('lp7.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.slice:nth-child(5){
-    height:74%;
-    margin-top:-8%;
-    background-color:#aaa;
-    background-image: url('lp5.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.slice:nth-child(6){
-    height:54%;
-    margin-top:14%;
-    background-color:#bbb;
-    background-image: url('lp6.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.slice:nth-child(7){
-    height:34%;
-    margin-top:-4%;
-    background-color:#ccc;
-    background-image: url('lp1.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+            height:40%;
+            margin-top:10%;
+            background-color:#ccc;
+            background-image: url('lp8.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .slice:nth-child(2){
+            height:62%;
+            margin-top:-5%;
+            background-color:#bbb;
+            background-image: url('lp2.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .slice:nth-child(3){
+            height:86%;
+            margin-top:4%;
+            background-color:#aaa;
+            background-image: url('lp4.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .slice:nth-child(4){
+            height:100%;
+            margin-top:0%;
+            background-color:#999;
+            background-image: url('lp7.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .slice:nth-child(5){
+            height:74%;
+            margin-top:-8%;
+            background-color:#aaa;
+            background-image: url('lp5.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .slice:nth-child(6){
+            height:54%;
+            margin-top:14%;
+            background-color:#bbb;
+            background-image: url('lp6.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .slice:nth-child(7){
+            height:34%;
+            margin-top:-4%;
+            background-color:#ccc;
+            background-image: url('lp1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
         .shredded-container:hover .slice { filter:grayscale(.1) contrast(1.1); width:72px; }
         .shredded-container .slice:hover { width:115px; filter:grayscale(0) contrast(1.12); }
         .hero-script { position:absolute; right:7vw; bottom:14vh; color:var(--accent); font-family:'Space Grotesk',sans-serif; font-size:clamp(22px,3.6vw,50px); font-weight:700; line-height:.9; text-align:right; transform:rotate(-3deg); z-index:20; pointer-events:none; opacity:0; letter-spacing:.04em; }
@@ -238,12 +232,14 @@
         .achievement:hover { padding-left:12px; background:#fafafa; }
         .achievement-icon { color:var(--accent); font-family:var(--mono); font-size:12px; flex-shrink:0; margin-top:2px; }
         .achievement strong { color:var(--fg); display:block; margin-bottom:3px; font-weight:700; font-size:14px; }
-        footer { padding:80px 10vw; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; background:var(--bg); }
+        footer { padding:80px 10vw 0; border-top:1px solid var(--border); background:var(--bg); }
+        .footer-main { display:flex; justify-content:space-between; align-items:center; padding-bottom:80px; }
         .footer-cta { font-size:clamp(22px,3.2vw,48px); font-weight:800; text-decoration:none; color:var(--fg); transition:color .25s; letter-spacing:-0.02em; display:block; }
         .footer-cta:hover { color:var(--accent); }
         .footer-links { display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
         .footer-links a { font-family:var(--mono); font-size:11px; color:var(--muted); text-decoration:none; text-transform:uppercase; letter-spacing:.1em; transition:color .2s; }
         .footer-links a:hover { color:var(--accent); }
+        .footer-byline { border-top:1px solid var(--border); padding:18px 0; text-align:center; font-family:var(--mono); font-size:10px; letter-spacing:.12em; color:#bbb; text-transform:lowercase; }
         #now-playing { position:fixed; bottom:28px; right:28px; z-index:800; font-family:var(--mono); display:flex; align-items:center; gap:12px; background:rgba(13,13,13,.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.1); border-radius:999px; padding:10px 18px 10px 14px; opacity:0; transform:translateY(12px); transition:opacity .5s, transform .5s; max-width:300px; }
         #now-playing.show { opacity:1; transform:translateY(0); }
         .vinyl { width:32px; height:32px; border-radius:50%; background:conic-gradient(#1e1e1e 0deg 60deg,#333 60deg 120deg,#1e1e1e 120deg 180deg,#333 180deg 240deg,#1e1e1e 240deg 300deg,#333 300deg 360deg); position:relative; flex-shrink:0; animation:spin 3s linear infinite; }
@@ -263,6 +259,10 @@
         .np-vol input { width:56px; accent-color:var(--accent); }
 
         @media (max-width:768px) {
+            /* Hide cursor on touch devices */
+            .cursor { display:none; }
+            *, *::before, *::after { cursor:auto !important; }
+            #loader-text { font-size:clamp(.9rem,5vw,1.3rem); letter-spacing:.12em; padding:0 28px; }
             .hamburger { display:flex; }
             .nav-right { display:none; }
             .mobile-nav-overlay { display:block; }
@@ -281,7 +281,8 @@
             .exp-period { text-align:left; }
             .about { padding:80px 24px; }
             .about-intro { font-size:clamp(18px,5vw,28px); }
-            footer { padding:60px 24px; flex-direction:column; align-items:flex-start; gap:28px; }
+            footer { padding:60px 24px 0; }
+            .footer-main { flex-direction:column; align-items:flex-start; gap:28px; padding-bottom:60px; }
             .footer-links { align-items:flex-start; }
             #now-playing { bottom:16px; right:16px; max-width:unset; width:auto; padding:8px 10px; gap:0; }
             #now-playing .np-info { max-width:0; overflow:hidden; opacity:0; transition:max-width 0.4s cubic-bezier(.16,1,.3,1), opacity 0.3s ease; margin-left:0; }
@@ -449,15 +450,18 @@
     </section>
 
     <footer class="reveal">
-        <div>
-            <span class="tag" style="margin-bottom:10px;">LET'S TALK</span>
-            <a href="mailto:taashvisingh@email.com" class="footer-cta"><span class="curtain-wrap">taashvisingh@email.com</span></a>
+        <div class="footer-main">
+            <div>
+                <span class="tag" style="margin-bottom:10px;">LET'S TALK</span>
+                <a href="mailto:taashvisingh@email.com" class="footer-cta"><span class="curtain-wrap">taashvisingh@email.com</span></a>
+            </div>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/taashvisingh" target="_blank">LinkedIn ↗</a>
+                <a href="https://behance.net/taashvisingh" target="_blank">Behance ↗</a>
+                <a href="Taashvi Singh Resume - 2026.pdf" target="_blank">Resume PDF ↗</a>
+            </div>
         </div>
-        <div class="footer-links">
-            <a href="https://linkedin.com/in/taashvisingh" target="_blank">LinkedIn ↗</a>
-            <a href="https://behance.net/taashvisingh" target="_blank">Behance ↗</a>
-            <a href="Taashvi Singh Resume - 2026.pdf" target="_blank">Resume PDF ↗</a>
-        </div>
+        <div class="footer-byline">coded by me, with &lt;3</div>
     </footer>
 
     <div id="now-playing">
@@ -482,7 +486,7 @@
     </div>
 
     <script>
-    /* CURSOR */
+    /* CURSOR — hidden on touch/mobile via CSS, still runs on desktop */
     const cursor = document.querySelector('.cursor');
     let cx=innerWidth/2, cy=innerHeight/2, tx=cx, ty=cy;
     document.addEventListener('mousemove', e=>{ tx=e.clientX; ty=e.clientY; });
